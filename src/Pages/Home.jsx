@@ -1,14 +1,24 @@
-import React, { useEffect } from 'react'
+
+
+import AlbumSection from "./HomeCompo/AlbumSection";
+import ArtistSection from "./HomeCompo/ArtistSection";
+import Hero from "./HomeCompo/Hero";
+import TrendingSection from "./HomeCompo/TrendingSection";
 
 const Home = () => {
-
-
   return (
-    <div>
-      Home
-      
-    </div>
-  )
-}
+    <div className="space-y-14">
 
-export default Home
+      <Hero />
+
+      <TrendingSection/>
+
+      <AlbumSection />
+
+      <ArtistSection />
+
+    </div>
+  );
+};
+
+export default Home;

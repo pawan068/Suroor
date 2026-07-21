@@ -8,6 +8,7 @@ import Album from '../../Pages/Album';
 import Artist from '../../Pages/Artist';
 import Playlist from '../../Pages/Playlist';
 import NotFound from '../../Pages/NotFound';
+import Trending from '../../Pages/Trending/Trending';
 
 
 const AppRoutes = () => {
@@ -26,6 +27,7 @@ const AppRoutes = () => {
 <Route path='/artist/:id' element = {< Artist />} />
 <Route path='/playlist/:id' element = {< Playlist />} />
 <Route path = "*" element={<NotFound />} />
+<Route path="/trending" element={<Trending />} />
 
 
 
