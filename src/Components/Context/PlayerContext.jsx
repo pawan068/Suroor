@@ -1,33 +1,38 @@
 import { createContext, useContext, useState } from "react";
 
-
 const PlayerContext = createContext();
 
-export const PlayerProvider = ({children})=>{
-    const [currentSong, setCurrentSong]= useState(null);
-    const [isPlaying , setIsPlaying] = useState(false);
+export const PlayerProvider = ({ children }) => {
 
-    const playSong  = (song) =>{
-        setCurrentSong(song);
-        setIsPlaying(true);
-    }
+  const [currentSong, setCurrentSong] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-    const togglePlay = ()=>{
-        setIsPlaying((prev)=>!prev);
-    }
 
-    return (
-        <PlayerContext.Provider value={{
-            currentSong,
-            isPlaying,
-            playSong,
-            togglePlay,
-        }} >
-            {children}
+  const playSong = (song) => {
+    console.log("SELECTED SONG:", song);
+    setCurrentSong(song);
+    setIsPlaying(true);
+  };
 
-        </PlayerContext.Provider>
-    )
 
-}
+  const togglePlay = () => {
+    setIsPlaying((prev) => !prev);
+  };
 
-export const usePlayer = () => useContext(PlayerContext)
+
+  return (
+    <PlayerContext.Provider
+      value={{
+        currentSong,
+        isPlaying,
+        playSong,
+        togglePlay,
+      }}
+    >
+      {children}
+    </PlayerContext.Provider>
+  );
+};
+
+
+export const usePlayer = () => useContext(PlayerContext);

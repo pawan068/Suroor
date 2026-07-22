@@ -1,34 +1,61 @@
-import { FaPlay } from "react-icons/fa";
+import React from "react";
+import { Play } from "lucide-react";
+import { usePlayer } from "../../Components/Context/PlayerContext";
 
 const SongCard = ({ song }) => {
-  return (
-    <div className="group bg-zinc-900 rounded-xl p-4 hover:bg-zinc-800 transition-all duration-300 cursor-pointer">
 
-      {/* Album Image */}
-      <div className="relative overflow-hidden rounded-lg">
+  const { playSong } = usePlayer();
+
+  return (
+    <div className="group relative bg-zinc-900 p-4 rounded-xl overflow-hidden">
+
+      <div className="relative">
 
         <img
-          src={song.image}
-          alt={song.name}
-          className="w-full aspect-square object-cover rounded-lg transition duration-300 group-hover:scale-110"
+          src={song?.images?.[2]?.url}
+          alt={song?.title}
+          className="w-full aspect-square object-cover rounded-lg"
         />
 
         {/* Play Button */}
         <button
-          className=" absolute bottom-3 right-3 w-12 h-12 rounded-full bg-green-500 text-black flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 shadow-lg
+          onClick={() => {
+            console.log("PLAY CLICKED:", song.title);
+            playSong(song);
+          }}
+          className="
+            absolute
+            bottom-3
+            right-3
+            w-12
+            h-12
+            rounded-full
+            bg-green-500
+            text-black
+            flex
+            items-center
+            justify-center
+            opacity-0
+            translate-y-4
+            group-hover:opacity-100
+            group-hover:translate-y-0
+            transition-all
+            duration-300
+            shadow-lg
           "
         >
-          <FaPlay className="ml-1" />
+          <Play size={22} fill="black" />
         </button>
 
       </div>
 
-      <h3 className="mt-4 font-semibold truncate group-hover:text-green-400 transition">
-        {song.name}
+
+      <h3 className="text-white mt-3 font-semibold truncate">
+        {song?.title}
       </h3>
 
-      <p className="text-zinc-400 text-sm truncate">
-        {song.artist}
+      <p className="text-gray-400 text-sm truncate">
+        {song?.subtitle}
       </p>
 
     </div>

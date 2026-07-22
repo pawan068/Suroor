@@ -1,13 +1,16 @@
-import axios from "../../api/axios";
+import api from "../../api/axios";
+
 
 export const searchSongs = async (query) => {
   try {
-    const response = await axios.get(`/search/songs?query=${query}`);
+    const { data } = await api.get(
+      `/api/search?query=${query}`
+    );
 
-    return response.data;
+    return data;
 
   } catch (error) {
-    console.log(error);
+    console.log("Song API Error:", error);
     return null;
   }
 };

@@ -13,15 +13,17 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
     <BrowserRouter basename="/Suroor">
 
-      <SongProvider>
+     
 
         <PlayerProvider>
-
+          
+            <SongProvider>
           <App />
+            </SongProvider>
 
         </PlayerProvider>
 
-      </SongProvider>
+    
 
     </BrowserRouter>
 
