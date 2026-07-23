@@ -13,7 +13,7 @@ export const SongProvider = ({ children }) => {
 
       const response = await searchSongs(query);
 
-      console.log("FULL API RESPONSE:", response);
+   
 
       setSongs(response?.results || []);
 

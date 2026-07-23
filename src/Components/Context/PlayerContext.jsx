@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 
-const PlayerContext = createContext();
+export const PlayerContext = createContext();
 
 export const PlayerProvider = ({ children }) => {
 
@@ -8,8 +8,10 @@ export const PlayerProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
 
-  const playSong = (song) => {
-    console.log("SELECTED SONG:", song);
+  
+
+   const playSong = (song) => {
+
     setCurrentSong(song);
     setIsPlaying(true);
   };

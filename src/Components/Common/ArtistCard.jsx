@@ -1,6 +1,14 @@
-const ArtistCard = ({ artist }) => {
+const ArtistCard = ({ artist, onClick }) => {
+
   return (
-    <div className="group cursor-pointer text-center">
+    <div
+      onClick={() => onClick(artist.id)}
+      className="
+      group 
+      cursor-pointer 
+      text-center
+      "
+    >
 
       <img
         src={artist.image}
@@ -17,16 +25,20 @@ const ArtistCard = ({ artist }) => {
         "
       />
 
+
       <h3 className="mt-4 font-semibold">
         {artist.name}
       </h3>
+
 
       <p className="text-zinc-400 text-sm">
         Artist
       </p>
 
+
     </div>
   );
 };
+
 
 export default ArtistCard;
