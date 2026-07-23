@@ -3,7 +3,6 @@ import api from "../../api/axios";
 import { getAlbumById } from "../../Components/Services/songs";
 import { PlayerContext } from "../../Components/Context/PlayerContext";
 
-
 export default function AlbumSection() {
 
   const { playSong } = useContext(PlayerContext);
@@ -11,16 +10,29 @@ export default function AlbumSection() {
   const [albums, setAlbums] = useState([]);
 
 
+  const handleAlbumClick = async (id, album) => {
 
-  const handleAlbumClick = async (id) => {
+    try {
 
-    const data = await getAlbumById(id);
+      const data = await getAlbumById(id);
 
-    console.log("ALBUM DATA:", data);
+      console.log("ALBUM DATA:", data);
 
-    if (data?.songs?.length) {
 
-      playSong(data.songs[0]);
+      if (data?.songs?.length) {
+
+     const albumSongs = data.songs.map((song) => ({
+  ...song,
+  images: song.image || song.images || album.images,
+}));
+
+        playSong(albumSongs[0], albumSongs);
+
+      }
+
+    } catch (error) {
+
+      console.log("Album Fetch Error:", error);
 
     }
 
@@ -45,6 +57,7 @@ export default function AlbumSection() {
 
     };
 
+
     getAlbums();
 
   }, []);
@@ -61,33 +74,34 @@ export default function AlbumSection() {
 
       <div className="flex gap-5 overflow-x-auto no-scrollbar">
 
-        {
-          albums.map((album) => (
+        {albums.map((album) => (
 
-            <div
-              key={album.id}
-              onClick={() => handleAlbumClick(album.id)}
-              className="min-w-[180px] bg-zinc-900 p-3 rounded-xl cursor-pointer"
-            >
+          <div
+            key={album.id}
+            onClick={() => handleAlbumClick(album.id, album)}
+            className="min-w-[180px] bg-zinc-900 p-3 rounded-xl cursor-pointer hover:bg-zinc-800 transition"
+          >
 
-              <img
-                src={album.images?.[2]?.url}
-                alt={album.title}
-                className="rounded-lg w-full"
-              />
+            <img
+              src={album.images?.[2]?.url}
+              alt={album.title}
+              className="rounded-lg w-full aspect-square object-cover"
+            />
 
-              <h3 className="mt-2 font-semibold">
-                {album.title}
-              </h3>
 
-              <p className="text-sm text-gray-400">
-                {album.subtitle}
-              </p>
+            <h3 className="mt-2 font-semibold truncate">
+              {album.title}
+            </h3>
 
-            </div>
 
-          ))
-        }
+            <p className="text-sm text-gray-400 truncate">
+              {album.subtitle}
+            </p>
+
+
+          </div>
+
+        ))}
 
       </div>
 

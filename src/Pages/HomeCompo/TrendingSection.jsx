@@ -4,7 +4,7 @@ import { useSongs } from "../../Components/Context/SongContext";
 
 const TrendingSection = () => {
   const { songs, loading } = useSongs();
-
+  console.log("TOTAL SONGS:", songs.length);
 
   return (
     <section>
@@ -17,10 +17,11 @@ const TrendingSection = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-5">
 
           {Array.isArray(songs) &&
-            songs.slice(0, 6).map((song) => (
+            songs.slice(0, 100).map((song) => (
               <SongCard
                 key={song.id}
                 song={song}
+                songs={songs}
               />
             ))}
 
