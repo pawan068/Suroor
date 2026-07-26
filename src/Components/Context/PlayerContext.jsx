@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { useRecent } from "./RecentlyPlayedContext";
 
 export const PlayerContext = createContext();
 
@@ -14,9 +15,11 @@ export const PlayerProvider = ({ children }) => {
   const [queue, setQueue] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(-1);
 
+  const { addRecentSong } = useRecent();
 
   const playSong = (song, songs = []) => {
     if (!song) return;
+    addRecentSong(song)
 
     if (songs.length) {
       setQueue(songs);
@@ -67,6 +70,8 @@ export const PlayerProvider = ({ children }) => {
 
 
   const playQueueSong = (song, index) => {
+
+     addRecentSong(song);
 
     setCurrentSong(song);
     setCurrentIndex(index);

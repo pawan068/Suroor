@@ -23,7 +23,7 @@ app.get("/api/search", async (req, res) => {
 
     const songs = await Song.search({
       query,
-      limit: 20
+      limit: 100
     });
 
     res.json(songs);
@@ -87,8 +87,8 @@ app.get("/api/artists", async (req, res) => {
   try {
 
     const artists = await Artist.search({
-      query: "Hindi Bollywood",
-      limit: 10
+      query: " english",
+      limit: 50
     });
 
     res.json(artists);

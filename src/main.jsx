@@ -4,8 +4,12 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "./index.css";
 
+
 import { PlayerProvider } from "./Components/Context/PlayerContext";
 import { SongProvider } from "./Components/Context/SongContext";
+import { PlaylistProvider } from "./Components/Context/PlayListContext";
+import { LikeProvider } from "./Components/Context/LikeContext";
+import { RecentlyPlayedProvider } from './Components/Context/RecentlyPlayedContext';
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -13,17 +17,27 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
     <BrowserRouter basename="/Suroor">
 
-     
+<SongProvider>
+
+      <LikeProvider>
+
+       < RecentlyPlayedProvider>
 
         <PlayerProvider>
-          
-            <SongProvider>
-          <App />
-            </SongProvider>
+
+          <PlaylistProvider>
+
+            <App />
+
+          </PlaylistProvider>
 
         </PlayerProvider>
 
-    
+         </RecentlyPlayedProvider>
+
+      </LikeProvider>
+
+</SongProvider>
 
     </BrowserRouter>
 

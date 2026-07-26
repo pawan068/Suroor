@@ -6,7 +6,7 @@ const SongCard = ({ song, songs }) => {
   const { playSong } = usePlayer();
 
   return (
-    <div className="group relative bg-zinc-900 p-4 rounded-xl overflow-hidden">
+    <div className="group  relative bg-zinc-900 p-4 rounded-xl overflow-hidden">
 
       <div className="relative">
 
@@ -18,8 +18,7 @@ const SongCard = ({ song, songs }) => {
 
         <button
           onClick={() => playSong(song, songs)}
-          className="absolute bottom-3 right-3 w-12 h-12 rounded-full bg-green-500 text-black flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 shadow-lg"
-        >
+className="absolute bottom-3 right-3 w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-green-500 text-black flex items-center justify-center  lg:opacity-0 lg:translate-y-0 lg:translate-y-4 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 transition-all duration-300 shadow-lg"        >
           <Play size={22} fill="black" />
         </button>
 
