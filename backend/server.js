@@ -43,7 +43,7 @@ app.get("/api/albums/", async (req, res) => {
   try {
 
     const albums = await Album.getTrending({
-      language: "hindi bollywood"
+      language: "hindi"
     });
 
     res.json(albums);
@@ -87,8 +87,8 @@ app.get("/api/artists", async (req, res) => {
   try {
 
     const artists = await Artist.search({
-      query: "bollywood",
-      limit: 10
+      query: " hindi bollywood",
+      limit: 50
     });
 
     res.json(artists);
