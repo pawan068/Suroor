@@ -1,11 +1,13 @@
 import {
-  Play, Pause, SkipBack, SkipForward, Heart, ListMusic, Plus, Volume2, X
+  Play, Pause, SkipBack, SkipForward, Heart, ListMusic, Plus, Volume2, X,
+  Download
 } from "lucide-react";
 
-import { usePlayer } from "../Context/PlayerContext";
+
 import { useState } from "react";
 import PlaylistModal from "../Common/PlayListModal";
 import { useLike } from './../Context/LikeContext';
+import { usePlayer } from "../Context/PlayerContext";
 
 
 const formatTime = (time) => {
@@ -20,22 +22,30 @@ const formatTime = (time) => {
 };
 
 
+
+
 const BottomPlayer = () => {
+
+
+
+
+
   const { toggleLike, isLiked } = useLike();
 
   const [showPlaylistModal, setShowPlaylistModal] = useState(false);
   const [miniPlayer, setMiniPlayer] = useState(false);
 
-  const {
-    currentSong,
-    isPlaying,
-    togglePlay,
-    currentTime,
-    duration,
-    seekSong,
-    nextSong,
-    prevSong
-  } = usePlayer();
+const {
+  currentSong,
+  isPlaying,
+  togglePlay,
+  currentTime,
+  duration,
+  seekSong,
+  nextSong,
+  prevSong,
+  downloadSong
+} = usePlayer();
 
 
   if (!currentSong) return null;
@@ -56,6 +66,7 @@ const BottomPlayer = () => {
 
       {
         miniPlayer ? (
+          
 
           <div
             onClick={ () => setMiniPlayer(false) }
@@ -240,7 +251,14 @@ const BottomPlayer = () => {
                 </button>
 
 
-                <ListMusic size={ 21 } />
+                <button
+                  className="text-zinc-400 cursor-pointer hover:text-white transition"
+                onClick={() => downloadSong(currentSong)}>
+                  <Download size={ 22 } />
+
+                
+                  
+                </button>
 
 
                 <div className="hidden md:flex items-center gap-3">

@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { Song, Album, Artist } from "@saavn-labs/sdk";
+import axios from "axios";
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.json({
     message: "Backend is running 🚀"
+    
   });
 });
 
@@ -122,6 +124,51 @@ app.get("/api/artists/:id",async (req, res) =>{
       error: error.message
     });
   }
+});
+
+
+app.get("/api/download", async (req,res)=>{
+
+  try {
+
+    const url = req.query.url;
+
+
+    if(!url){
+      return res.status(400).send("URL missing");
+    }
+
+
+    const response = await axios({
+      url,
+      method:"GET",
+      responseType:"stream"
+    });
+
+
+    res.setHeader(
+      "Content-Disposition",
+      'attachment; filename="song.mp3"'
+    );
+
+
+    res.setHeader(
+      "Content-Type",
+      "audio/mpeg"
+    );
+
+
+    response.data.pipe(res);
+
+
+  } catch(error){
+
+    console.log("DOWNLOAD ERROR:", error.message);
+
+    res.status(500).send(error.message);
+
+  }
+
 });
 
 

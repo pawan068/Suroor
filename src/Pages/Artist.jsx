@@ -88,7 +88,9 @@ const Artist = () => {
             <h1 className="text-4xl md:text-7xl font-black mt-3">
               {artist.name}
             </h1>
+            
 
+    
 
             <p className="text-zinc-400 mt-3">
               {artist.subtitle}
@@ -117,6 +119,13 @@ const Artist = () => {
           </div>
 
         </div>
+
+
+        <p className="text-zinc-400 mt-4 max-w-3xl leading-relaxed">
+  {artist.profile?.bio?.[0]?.text ||
+   "No description available"}
+</p>
+
 
 
 
