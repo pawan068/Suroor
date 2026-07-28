@@ -14,6 +14,7 @@ import Trending from "../../Pages/Trending/Trending";
 import PlaylistDetails from './../../Pages/Trending/PlaylistDetails';
 import PlaylistBanner from "../../Pages/HomeCompo/PlaylistBanner";
 import RecentlyPlayer from "../../Pages/recent/RecentlyPlayer";
+import FollowedArtists from "../../Pages/Following/FollowedArtist";
 
 
 const AppRoutes = () => {
@@ -23,6 +24,8 @@ const AppRoutes = () => {
     <Routes>
 
       <Route path="/" element={<Home />} />
+
+      
 
       <Route path="/library" element={<Library />} />
 
@@ -42,7 +45,10 @@ const AppRoutes = () => {
 
       <Route path="/trending" element={<Trending />} />
 
+      <Route path ="/followed-artists" element={<FollowedArtists/>}/>
+
       <Route path="/recently-played" element={<RecentlyPlayer />} />
+      
 
       <Route path="/playlist-banner" element={<PlaylistBanner />} />
 

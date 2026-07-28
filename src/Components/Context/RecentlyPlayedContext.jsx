@@ -13,6 +13,12 @@ export const RecentlyPlayedProvider = ({ children }) => {
 
   });
 
+  const clearRecent = ()=>{
+    setRecentSongs([]);
+    localStorage.removeItem("recentSongs")
+
+  }
+
 
   useEffect(() => {
 
@@ -25,26 +31,31 @@ export const RecentlyPlayedProvider = ({ children }) => {
 
 
 
-  const addRecentSong = (song) => {
 
-    if (!song) return;
+const addRecentSong = (song) => {
+
+  if (!song) return;
+
+  setRecentSongs((prev) => {
+
+    let updatedSongs = [
+      song,
+      ...prev
+    ];
 
 
-    setRecentSongs((prev) => {
-
-      const filtered = prev.filter(
-        item => item.id !== song.id
-      );
+    if (updatedSongs.length > 30) {
+      updatedSongs.pop(); 
+    }
 
 
-      return [
-        song,
-        ...filtered
-      ].slice(0, 50);
+    return updatedSongs;
 
-    });
+  });
 
-  };
+};
+
+
 
 
   return (
@@ -52,7 +63,8 @@ export const RecentlyPlayedProvider = ({ children }) => {
     <RecentlyPlayedContext.Provider
       value={{
         recentSongs,
-        addRecentSong
+        addRecentSong,
+        clearRecent
       }}
     >
 
@@ -63,6 +75,7 @@ export const RecentlyPlayedProvider = ({ children }) => {
   );
 
 };
+
 
 
 

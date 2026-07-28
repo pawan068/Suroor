@@ -1,12 +1,27 @@
-import { History, Play } from "lucide-react";
+import { History, Play, Trash2 } from "lucide-react";
 import { usePlayer } from "../../Components/Context/PlayerContext";
 import { useRecent } from "../../Components/Context/RecentlyPlayedContext";
+import { useState } from "react";
 const RecentlyPlayer = () => {
 
-  const { recentSongs } = useRecent();
+  const { recentSongs , clearRecent } = useRecent();
+
+  
   const { playSong } = usePlayer();
 
+  
+
   return (
+
+
+    <>
+
+<div className="w-full flex justify-between px-5">
+  <div className="flex items-center">Pick up right where you left off</div>
+  <div onClick={clearRecent} className="p-3 bg-green-50 rounded-full cursor-pointer text-red-600"> 
+    <Trash2/> </div>
+</div>
+     
 
     <div className="min-h-screen bg-black text-white px-5 md:px-8 py-8">
 
@@ -105,6 +120,8 @@ const RecentlyPlayer = () => {
       )}
 
     </div>
+
+    </>
 
   );
 };

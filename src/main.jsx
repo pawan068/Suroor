@@ -10,6 +10,7 @@ import { SongProvider } from "./Components/Context/SongContext";
 import { PlaylistProvider } from "./Components/Context/PlayListContext";
 import { LikeProvider } from "./Components/Context/LikeContext";
 import { RecentlyPlayedProvider } from './Components/Context/RecentlyPlayedContext';
+import { ArtistFollowProvider } from "./Pages/HomeCompo/ArtistFollowing";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -24,12 +25,13 @@ ReactDOM.createRoot(document.getElementById("root")).render(
        < RecentlyPlayedProvider>
 
         <PlayerProvider>
-
+<ArtistFollowProvider>
           <PlaylistProvider>
 
             <App />
 
           </PlaylistProvider>
+  </ArtistFollowProvider>
 
         </PlayerProvider>
 

@@ -3,6 +3,8 @@ import api from "../../api/axios";
 import { PlayerContext } from "../../Components/Context/PlayerContext";
 import { getArtistById } from "../../Components/Services/songs";
 import { useNavigate } from "react-router-dom";
+import { useArtistFollow } from "./ArtistFollowing";
+;
 
 export default function ArtistSection() {
 
@@ -12,6 +14,12 @@ export default function ArtistSection() {
   const [artistSongs, setArtistSongs] = useState([]);
 
   const { playSong } = useContext(PlayerContext);
+
+const {
+  toggleFollowArtist,
+  isFollowed
+} = useArtistFollow();
+
 
   const navigate = useNavigate();
 

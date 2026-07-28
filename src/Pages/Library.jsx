@@ -1,4 +1,4 @@
-import { Heart, History, Music2, Plus, Trash2 } from "lucide-react";
+import { Heart, History, Music2, Plus, Trash2, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -7,9 +7,16 @@ import { usePlaylist } from "../Components/Context/PlayListContext";
 import { useLike } from "../Components/Context/LikeContext";
 import LikedSongs from './LikedSongs';
 import { useRecent } from "../Components/Context/RecentlyPlayedContext";
+import { useArtistFollow } from "./HomeCompo/ArtistFollowing";
+import Artist from "./Artist";
+
+
 
 
 const Library = () => {
+
+
+  const { followedArtists} = useArtistFollow();
 
   const { recentSongs} = useRecent();
 
@@ -148,6 +155,39 @@ const Library = () => {
 
   </div>
 </Link>
+
+
+<Link
+  to="/followed-artists"
+  className="block bg-gradient-to-r from-green-800 via-green-900 to-green rounded-3xl p-7 shadow-xl hover:scale-[1.01] transition mb-12 border border-zinc-700"
+>
+  <div className="flex items-center justify-between">
+
+    <div>
+      <p className="uppercase text-xs tracking-[4px] text-zinc-400">
+        Collection
+      </p>
+
+      <h2 className="text-4xl font-bold mt-2">
+        Followed Artists
+      </h2>
+
+      <p className="text-zinc-400 mt-3">
+        All your followed artists at one place
+      </p>
+
+<p className="text-green-100 mt-4">
+  {followedArtists.length} {followedArtists.length === 1 ? "Artist" : "Artists"}
+</p>
+    </div>
+
+    <div className="w-24 h-24 rounded-2xl bg-green-500/20 flex items-center justify-center">
+      <Users size={50} className="text-green-400" />
+    </div>
+
+  </div>
+</Link>
+
 
 
 

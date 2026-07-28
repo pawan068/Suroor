@@ -35,8 +35,7 @@ export const SongProvider = ({ children }) => {
 
       const uniqueSongs = removeDuplicates(results);
 
-      console.log("BEFORE:", results.length);
-      console.log("AFTER:", uniqueSongs.length);
+     
 
       setSongs(uniqueSongs);
 
