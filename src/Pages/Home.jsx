@@ -7,7 +7,7 @@ import TrendingSection from './HomeCompo/TrendingSection';
 
 const Home = () => {
   return (
-    <div className="space-y-14  ">
+    <div className="space-y-14 no-scrollbar ">
 
       <Hero />
 

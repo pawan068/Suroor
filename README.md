@@ -1,16 +1,115 @@
-# React + Vite
+🎵 Suroor
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Suroor is a full-stack music application that allows users to discover songs, search music, explore artists, and enjoy a smooth music player experience.
 
-Currently, two official plugins are available:
+The project focuses on building a modern music platform experience using React, Node.js, Express, and API integration while following a scalable application structure.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## React Compiler
+✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+• Search songs and artists  
+• Browse songs by different languages  
+• Explore artist profiles and popular tracks  
+• Custom music player functionality  
+• Play and pause songs  
+• Next and previous song navigation  
+• Recently played songs  
+• Follow favourite artists  
+• Local storage based user preferences  
+• Responsive design for desktop and mobile devices  
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🛠️ Tech Stack
+
+Frontend:
+• React.js
+• Vite
+• Tailwind CSS
+• React Router DOM
+• Context API
+• Axios
+
+Backend:
+• Node.js
+• Express.js
+• REST APIs
+
+Tools:
+• Git
+• GitHub
+• VS Code
+
+
+📂 Project Structure
+
+```
+Suroor
+│
+├── frontend
+│   │
+│   └── src
+│       ├── Components
+│       ├── Pages
+│       ├── Context
+│       ├── Services
+│       ├── api
+│       ├── App.jsx
+│       └── main.jsx
+│
+├── backend
+│   │
+│   ├── routes
+│   ├── controllers
+│   ├── services
+│   ├── server.js
+│   └── package.json
+│
+└── README.md
+```
+
+
+🔌 API Integration
+
+Suroor uses external APIs to fetch music-related information such as:
+
+• Songs
+• Artists
+• Albums
+• Music metadata
+
+The application uses this data to create a custom music browsing and playback experience.
+
+
+⚖️ Usage Disclaimer
+
+Suroor is developed for educational and portfolio purposes.
+
+• This project does not store or upload music files.
+• Music-related data is fetched from external services.
+• All music content belongs to their respective owners.
+• This project is not affiliated with any official music streaming platform, artist, or music label.
+• This application is not intended for commercial music distribution.
+
+
+🎯 Learning Outcomes
+
+While developing Suroor, I worked on:
+
+• Building a full-stack React application
+• Creating backend APIs with Express.js
+• Managing global state using Context API
+• Integrating external APIs using Axios
+• Creating dynamic pages and routes
+• Building responsive user interfaces
+• Handling local storage for user preferences
+
+
+🚀 Future Improvements
+
+• Advanced search filters
+• Playlist creation
+• User authentication
+• Improved recommendation system
+• Better music discovery experience
+
+
