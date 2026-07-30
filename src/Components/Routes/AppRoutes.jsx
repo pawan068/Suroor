@@ -16,6 +16,10 @@ import PlaylistBanner from "../../Pages/HomeCompo/PlaylistBanner";
 import RecentlyPlayer from "../../Pages/recent/RecentlyPlayer";
 import FollowedArtists from "../../Pages/Following/FollowedArtist";
 
+import Login from "../Login";
+import  register  from '../Register';
+import Register from "../Register";
+
 
 const AppRoutes = () => {
 
@@ -48,6 +52,11 @@ const AppRoutes = () => {
       <Route path ="/followed-artists" element={<FollowedArtists/>}/>
 
       <Route path="/recently-played" element={<RecentlyPlayer />} />
+
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+
+  
       
 
       <Route path="/playlist-banner" element={<PlaylistBanner />} />

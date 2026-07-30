@@ -1,4 +1,5 @@
 import { Menu, Search } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ setIsSidebarOpen }) => {
   return (
@@ -30,10 +31,12 @@ const Navbar = ({ setIsSidebarOpen }) => {
 
       </div>
 
-      <button className="bg-green-500 text-black px-5 py-2 rounded-full">
+
+<Link to="/login">
+      <button className="bg-green-500 cursor-pointer text-black px-5 py-2 rounded-full">
         Login
       </button>
-
+</Link>
     </header>
   );
 };

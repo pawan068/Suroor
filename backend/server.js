@@ -2,11 +2,27 @@ import express from "express";
 import cors from "cors";
 import { Song, Album, Artist } from "@saavn-labs/sdk";
 import axios from "axios";
+import dotenv from "dotenv";
+import connectDB from "./config/db.js";
+import authRoutes from "./routes/authRoutes.js";
+import cookieParser from "cookie-parser";
+
+
 
 const app = express();
+dotenv.config()
+connectDB()
 
-app.use(cors());
+
+
+
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true
+}));
 app.use(express.json());
+app.use(cookieParser());
+app.use("/api/auth",authRoutes)
 
 
 // Test Route
@@ -16,6 +32,7 @@ app.get("/", (req, res) => {
     
   });
 });
+
 
 
 // Search Songs
@@ -170,7 +187,6 @@ app.get("/api/download", async (req,res)=>{
   }
 
 });
-
 
 // Server
 app.listen(5000, () => {
