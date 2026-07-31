@@ -27,27 +27,17 @@ export default function Register() {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#14110F] text-[#F5F0EA] font-sans">
-      <div className="hidden md:flex flex-1 flex-col items-center justify-center gap-6 border-r border-[#2A241F] bg-[radial-gradient(circle_at_30%_20%,#241D18,#14110F_70%)]">
-        <div className="flex items-end gap-1.5 h-16">
-          {Array.from({ length: 12 }).map((_, i) => (
-            <span
-              key={i}
-              className="w-1.5 rounded-sm bg-[#FF6B4A] animate-eq"
-              style={{ animationDelay: `${i * 0.12}s` }}
-            />
-          ))}
-        </div>
-        <h1 className="font-display text-4xl tracking-tight m-0">Musicfy</h1>
-        <p className="text-[#8A8078] text-sm m-0">Your sound, always on.</p>
-      </div>
+    <div className="flex min-h-[80%] justify-center  text-[#F5F0EA] font-sans">
+     
 
-      <div className="flex flex-1 items-center justify-center p-8">
+ 
+
+      <div className="flex flex-1 bg-[#14110F] rounded-2xl max-w-[400px] items-center justify-center p-8">
         <form
           onSubmit={handleRegister}
           className="w-full max-w-sm flex flex-col gap-4"
         >
-          <span className="uppercase text-[11px] tracking-[0.12em] text-[#FF6B4A] font-semibold">
+          <span className="uppercase text-[11px] tracking-[0.12em] text-green-600 font-semibold">
             Get started
           </span>
           <h2 className="font-display text-2xl m-0 mb-2">Create your account</h2>
@@ -60,7 +50,7 @@ export default function Register() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="bg-[#1E1A17] border border-[#322B25] rounded-lg px-3.5 py-3 text-[#F5F0EA] text-sm outline-none focus:border-[#FF6B4A] transition-colors"
+              className="bg-[#1E1A17] border border-[#322B25] rounded-lg px-3.5 py-3 text-[#F5F0EA] text-sm outline-none focus:border-green-300 transition-colors"
             />
           </label>
 
@@ -72,7 +62,7 @@ export default function Register() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="bg-[#1E1A17] border border-[#322B25] rounded-lg px-3.5 py-3 text-[#F5F0EA] text-sm outline-none focus:border-[#FF6B4A] transition-colors"
+              className="bg-[#1E1A17] border border-[#322B25] rounded-lg px-3.5 py-3 text-[#F5F0EA] text-sm outline-none focus:border-green-300 transition-colors"
             />
           </label>
 
@@ -84,7 +74,7 @@ export default function Register() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="bg-[#1E1A17] border border-[#322B25] rounded-lg px-3.5 py-3 text-[#F5F0EA] text-sm outline-none focus:border-[#FF6B4A] transition-colors"
+              className="bg-[#1E1A17] border border-[#322B25] rounded-lg px-3.5 py-3 text-[#F5F0EA] text-sm outline-none focus:border-green-300 transition-colors"
             />
           </label>
 
@@ -93,14 +83,14 @@ export default function Register() {
           <button
             type="submit"
             disabled={loading}
-            className="mt-2 bg-[#FF6B4A] text-[#14110F] rounded-lg py-3 font-semibold text-sm hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed transition-opacity"
+            className="mt-2 bg-green-500 cursor-pointer text-[#14110F] rounded-lg py-3 font-semibold text-sm hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed transition-opacity"
           >
             {loading ? "Signing up..." : "Sign up"}
           </button>
 
           <p className="text-center text-sm text-[#8A8078] mt-2">
             Already have an account?{" "}
-            <Link to="/login" className="text-[#FF6B4A] no-underline">
+            <Link to="/login" className="text-green-100 no-underline">
               Log in
             </Link>
           </p>

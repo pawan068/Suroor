@@ -20,16 +20,7 @@ const Navbar = ({ setIsSidebarOpen }) => {
 
       </div>
 
-      <div className="hidden md:flex items-center bg-zinc-800 rounded-full px-4 py-2 w-full max-w-lg mx-8">
-
-        <Search size={18} />
-
-        <input
-          placeholder="Search songs..."
-          className="bg-transparent outline-none px-3 w-full"
-        />
-
-      </div>
+      
 
 
 <Link to="/login">

@@ -6,34 +6,46 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import cookieParser from "cookie-parser";
+import passport from "./config/passport.js";
+import session from "express-session";
 
+dotenv.config();
 
+connectDB();
 
 const app = express();
-dotenv.config()
-connectDB()
 
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
-
-
-app.use(cors({
-  origin: "http://localhost:5173",
-  credentials: true
-}));
 app.use(express.json());
-app.use(cookieParser());
-app.use("/api/auth",authRoutes)
 
+app.use(cookieParser());
+
+app.use(
+  session({
+    secret: process.env.JWT_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+app.use(passport.initialize());
+
+app.use(passport.session());
+
+app.use("/api/auth", authRoutes);
 
 // Test Route
 app.get("/", (req, res) => {
   res.json({
-    message: "Backend is running 🚀"
-    
+    message: "Backend is running 🚀",
   });
 });
-
-
 
 // Search Songs
 app.get("/api/search", async (req, res) => {
@@ -42,153 +54,117 @@ app.get("/api/search", async (req, res) => {
 
     const songs = await Song.search({
       query,
-      limit: 100
+      limit: 100,
     });
 
     res.json(songs);
-
   } catch (error) {
     console.log("Song Error:", error);
 
     res.status(500).json({
-      error: error.message
+      error: error.message,
     });
   }
 });
 
-
 // Popular Albums
-app.get("/api/albums/", async (req, res) => {
+app.get("/api/albums", async (req, res) => {
   try {
-
     const albums = await Album.getTrending({
-      language: "hindi"
+      language: "hindi",
     });
 
     res.json(albums);
-
   } catch (error) {
-
     console.log("Album Error:", error);
 
     res.status(500).json({
-      error: error.message
+      error: error.message,
     });
-
   }
 });
 
 app.get("/api/albums/:id", async (req, res) => {
   try {
-
-    console.log("PARAM ID:", req.params.id);
-
     const album = await Album.getById({
-      albumId: String(req.params.id)
+      albumId: String(req.params.id),
     });
 
     res.json(album);
-
   } catch (error) {
-
-    console.log("FULL ERROR:", error);
+    console.log("Album Error:", error);
 
     res.status(500).json({
-      error: error.message
+      error: error.message,
     });
-
   }
 });
-
 
 // Top Artists
 app.get("/api/artists", async (req, res) => {
   try {
-
     const artists = await Artist.search({
-      query: " hindi bollywood",
-      limit: 50
+      query: "hindi bollywood",
+      limit: 50,
     });
 
     res.json(artists);
-
   } catch (error) {
-
     console.log("Artist Error:", error);
 
     res.status(500).json({
-      error: error.message
-    });
-
-  }
-});
-
-
-
-app.get("/api/artists/:id",async (req, res) =>{
-  try{
-
-    const artist = await Artist.getById({
-      artistId: req.params.id
-    });
-    res.json(artist);
-
-
-  }
-  catch(error){
-    console.log("Artist Detail Error:", error);
-    res.status(500).json({
-      error: error.message
+      error: error.message,
     });
   }
 });
 
-
-app.get("/api/download", async (req,res)=>{
-
+app.get("/api/artists/:id", async (req, res) => {
   try {
+    const artist = await Artist.getById({
+      artistId: req.params.id,
+    });
 
+    res.json(artist);
+  } catch (error) {
+    console.log("Artist Detail Error:", error);
+
+    res.status(500).json({
+      error: error.message,
+    });
+  }
+});
+
+// Download Song
+app.get("/api/download", async (req, res) => {
+  try {
     const url = req.query.url;
 
-
-    if(!url){
+    if (!url) {
       return res.status(400).send("URL missing");
     }
 
-
     const response = await axios({
       url,
-      method:"GET",
-      responseType:"stream"
+      method: "GET",
+      responseType: "stream",
     });
-
 
     res.setHeader(
       "Content-Disposition",
       'attachment; filename="song.mp3"'
     );
 
-
-    res.setHeader(
-      "Content-Type",
-      "audio/mpeg"
-    );
-
+    res.setHeader("Content-Type", "audio/mpeg");
 
     response.data.pipe(res);
-
-
-  } catch(error){
-
+  } catch (error) {
     console.log("DOWNLOAD ERROR:", error.message);
 
     res.status(500).send(error.message);
-
   }
-
 });
 
 // Server
 app.listen(5000, () => {
-  console.log("Server running on http://localhost:5000");
+  console.log(" Server running on http://localhost:5000");
 });
