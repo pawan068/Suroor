@@ -98,10 +98,33 @@ export const login = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        avatar: user.avatar,
       },
     });
   } catch (error) {
     console.log("Login Error:", error);
+
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+// =================== CURRENT USER ===================
+
+export const getCurrentUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.userId).select("-password");
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    res.json(user);
+  } catch (error) {
+    console.log("Get User Error:", error);
 
     res.status(500).json({
       message: error.message,

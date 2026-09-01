@@ -11,6 +11,7 @@ import { PlaylistProvider } from "./Components/Context/PlayListContext";
 import { LikeProvider } from "./Components/Context/LikeContext";
 import { RecentlyPlayedProvider } from './Components/Context/RecentlyPlayedContext';
 import { ArtistFollowProvider } from "./Pages/HomeCompo/ArtistFollowing";
+import { AuthProvider } from "./Components/Context/AuthContext";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -20,7 +21,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 <SongProvider>
 
+  <AuthProvider >
+
       <LikeProvider>
+
 
        < RecentlyPlayedProvider>
 
@@ -38,6 +42,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
          </RecentlyPlayedProvider>
 
       </LikeProvider>
+
+      </AuthProvider>
 
 </SongProvider>
 

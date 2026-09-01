@@ -33,3 +33,22 @@ export async function registerUser(name, email, password) {
 
   return data;
 }
+
+export async function getCurrentUser() {
+  const res = await fetch(`${API_URL}/me`, {
+    method: "GET",
+    credentials: "include",
+  });
+
+  if (!res.ok) return null;
+  return res.json();
+}
+
+export async function logoutUser() {
+  const res = await fetch(`${API_URL}/logout`, {
+    method: "POST",
+    credentials: "include",
+  });
+
+  return res.json();
+}

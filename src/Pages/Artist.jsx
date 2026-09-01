@@ -29,7 +29,6 @@ const Artist = () => {
 
         const data = await getArtistById(id);
 
-        console.log("ARTIST:", data);
 
         setArtist(data);
         setSongs(data?.songs?.top || []);

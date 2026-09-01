@@ -3,7 +3,7 @@ import SectionHeader from "../../Components/common/SectionHeader";
 import { useSongs } from "../../Components/Context/SongContext";
 const TrendingSection = () => {
   const { songs, loading } = useSongs();
-  console.log("TOTAL SONGS:", songs.length);
+
 
   return (
     <section>
